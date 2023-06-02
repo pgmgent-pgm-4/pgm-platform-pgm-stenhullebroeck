@@ -1,5 +1,7 @@
 export const LANDING = '/';
 export const HOME = '/home';
+export const PROJECTS = '/projects';
+export const PROGRAMME = '/programma';
 export const COMMUNITIES = '/communities';
 export const POSTS = '/posts';
 export const POST_DETAILS = '/posts/:postId';

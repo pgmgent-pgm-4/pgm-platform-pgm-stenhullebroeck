@@ -1,5 +1,3 @@
-import CommunitiesList from "./communities-list";
+import CommunitiesList from './communities-list';
 
-export {
-  CommunitiesList
-};
+export { CommunitiesList };

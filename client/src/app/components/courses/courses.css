@@ -1,0 +1,25 @@
+.background-Groen {
+  background-color: #00a651;
+}
+
+.background-Blauw {
+  background-color: #00a8e1;
+}
+
+.background-Oranje {
+  background-color: #f7941d;
+}
+
+.background-Rood {
+  background-color: #ed1c24;
+}
+
+.background-Paars {
+  background-color: #92278f;
+}
+
+.period-1:nth-of-type(1),
+.period-2:nth-of-type(1),
+.period-3:nth-of-type(1) {
+  margin-top: 5rem;
+}

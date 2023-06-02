@@ -14,23 +14,23 @@ export const GET_ALL_LECTURERS = gql`
   }
 `;
 
-export const GET_ALL_COURSES = gql`
-  query GetAllCourses {
-    courses {
-      name
-      description
-      year
-      studyPoints
-      semester
-      period
-      lecturers {
-        id
-        firstName
-        lastName
-      }
-    }
-  }
-`;
+// export const GET_ALL_COURSES = gql`
+//   query GetAllCourses {
+//     courses {
+//       name
+//       description
+//       year
+//       studyPoints
+//       semester
+//       period
+//       lecturers {
+//         id
+//         firstName
+//         lastName
+//       }
+//     }
+//   }
+// `;
 
 export const GET_ALL_PROJECTS = gql`
   query GetAllProjects {
@@ -39,11 +39,37 @@ export const GET_ALL_PROJECTS = gql`
       title
       description
       body {
-        markdown
+        text
       }
       course {
         id
         name
+      }
+    }
+  }
+`;
+
+export const GET_ALL_COURSES = gql`
+  query GetAllCourses {
+    courses(first: 25, orderBy: period_ASC) {
+      id
+      name
+      description
+      studyPoints
+      year
+      semester
+      period
+      programmeLine {
+        id
+        name
+        description
+        colorCode
+      }
+      lecturers {
+        id
+        firstName
+        lastName
+        initials
       }
     }
   }

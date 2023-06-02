@@ -5,6 +5,16 @@ import { UserContextNavigation } from '../auth';
 
 const routes = [
   {
+    title: 'Projects',
+    type: 'internal',
+    path: '/projects',
+  },
+  {
+    title: 'Programme',
+    type: 'internal',
+    path: '/programma',
+  },
+  {
     title: 'Communities',
     type: 'internal',
     path: '/communities',

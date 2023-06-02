@@ -11,6 +11,8 @@ import * as AppRoutes from './app/routes';
 
 // Utilities
 import {
+  ProgrammePage,
+  ProjectsPage,
   CommunitiesPage,
   DashboardPage,
   HomePage,
@@ -46,6 +48,8 @@ root.render(
                   path={AppRoutes.COMMUNITIES}
                   element={<CommunitiesPage />}
                 />
+                <Route path={AppRoutes.PROJECTS} element={<ProjectsPage />} />
+                <Route path={AppRoutes.PROGRAMME} element={<ProgrammePage />} />
               </Route>
               <Route path="auth" element={<AuthLayout />}>
                 <Route
