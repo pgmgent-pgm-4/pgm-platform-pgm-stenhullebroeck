@@ -25,7 +25,6 @@ const AuthProvider = ({ children }) => {
 
   const signInWithEmailAndPassword = async (email, password) => {
     try {
-      console.log(email, password);
       const response = await fetch('/api/login', {
         mode: 'cors',
         method: 'POST',
@@ -36,7 +35,6 @@ const AuthProvider = ({ children }) => {
         }),
       });
       const user = await response.json();
-      console.log(user);
       if (user) {
         setCurrentUser(user);
       }
@@ -60,7 +58,6 @@ const AuthProvider = ({ children }) => {
         }),
       });
       const user = await response.json();
-      console.log(user);
       if (user) {
         setCurrentUser(user);
       }

@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import client from './graphql_client';
 import { generateValueBetweenMinAndMax, generateTimestamps } from './utils';
+import bcrypt from 'bcrypt';
 
 const mutationCreateAuthUser = `
 mutation CreateAuthUserMutation($username: String!, $email: String!, $password: String!, $profileId: ID!) {
@@ -65,12 +66,13 @@ mutation CreateProfileMutation($firstname: String!, $lastname: String!) {
       const gender = generateValueBetweenMinAndMax(0, 1);
       const firstName = faker.person.firstName(gender);
       const lastName = faker.person.lastName(gender);
+      const password = await bcrypt.hash('w84pgmGent', 10);
       // eslint-disable-next-line no-await-in-loop
       await new Promise((resolve) => setTimeout(resolve, 300 * i)).then(() =>
         createUser({
           username: faker.internet.userName(firstName, lastName),
           email: faker.internet.email(firstName, lastName),
-          password: 'w84pgmGent',
+          password: password,
           firstname: firstName,
           lastname: lastName,
         })
@@ -81,5 +83,5 @@ mutation CreateProfileMutation($firstname: String!, $lastname: String!) {
   /*
    * Create Models in Auth
    */
-  await createUsers(100);
+  await createUsers(1);
 })();
