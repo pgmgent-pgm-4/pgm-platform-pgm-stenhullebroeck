@@ -47,15 +47,16 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUpWithEmailAndPassword = async (email, password) => {
+  const signUpWithEmailAndPassword = async (username, password, email) => {
     try {
       const response = await fetch('/api/signup', {
         mode: 'cors',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: email,
+          username: username,
           password: password,
+          email: email,
         }),
       });
       const user = await response.json();

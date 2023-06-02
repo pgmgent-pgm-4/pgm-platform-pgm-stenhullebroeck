@@ -23,6 +23,7 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     txtUsername: '',
     txtPassword: '',
+    txtEmail: '',
   });
 
   const { signUpWithEmailAndPassword } = useAuth();
@@ -38,13 +39,28 @@ const Signup = () => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-    signUpWithEmailAndPassword(formData.txtUsername, formData.txtPassword);
+    signUpWithEmailAndPassword(
+      formData.txtUsername,
+      formData.txtPassword,
+      formData.txtEmail
+    );
   };
 
   return (
     <Card>
       <Form onSubmit={handleSubmit} className="form">
         <Row>
+          <FormGroup>
+            <Label for="txtEmail">Email</Label>
+            <Input
+              id="txtEmail"
+              name="txtEmail"
+              placeholder="Write your email"
+              type="text"
+              onChange={handleOnChange}
+              value={formData.txtEmail}
+            />
+          </FormGroup>
           <FormGroup>
             <Label for="txtUsername">Username</Label>
             <Input
