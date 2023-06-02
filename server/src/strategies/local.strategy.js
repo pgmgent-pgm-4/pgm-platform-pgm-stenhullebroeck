@@ -4,6 +4,7 @@ import { Strategy } from 'passport-local';
 import { AwesomeGraphQLClient } from 'awesome-graphql-client';
 import fetch from 'node-fetch';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 // Import custom modules
 import settings from '../config/settings';
@@ -42,85 +43,100 @@ const localStrategy = () => {
     },
   });
 
-  passport.use('login', new Strategy(
-    {
-      usernameField: 'username',
-      passwordField: 'password',
-    },
-    async (username, password, done) => {
-      try {
-        const { authUser } = await client.request(queryGetUserByUsername, { username });
+  passport.use(
+    'login',
+    new Strategy(
+      {
+        usernameField: 'username',
+        passwordField: 'password',
+      },
+      async (username, password, done) => {
+        try {
+          const { authUser } = await client.request(queryGetUserByUsername, {
+            username,
+          });
 
-        if (!authUser) {
-          throw new HTTPError('User does no exists', 404);
+          if (!authUser) {
+            throw new HTTPError('User does no exists', 404);
+          }
+
+          if (!bcrypt.compareSync(password, authUser.password)) {
+            throw new HTTPError('Incorrect Credentials', 404);
+          }
+
+          const userPayload = {
+            id: authUser.id,
+            username: authUser.username,
+            email: authUser.email,
+          };
+
+          const token = jwt.sign({ user: userPayload }, settings.JWT_SECRET, {
+            expiresIn: settings.JWT_EXPIRE,
+          });
+
+          const authenticated = {
+            ...userPayload,
+            token,
+          };
+
+          done(null, authenticated);
+        } catch (error) {
+          done(error);
         }
-
-        if (password !== authUser.password) {
-          throw new HTTPError('Incorrect Credentials', 404);
-        }
-
-        const userPayload = {
-          id: authUser.id,
-          username: authUser.username,
-          email: authUser.email,
-        };
-
-        const token = jwt.sign({ user: userPayload }, settings.JWT_SECRET, {
-          expiresIn: settings.JWT_EXPIRE,
-        });
-
-        const authenticated = {
-          ...userPayload,
-          token,
-        };
-
-        done(null, authenticated);
-      } catch (error) {
-        done(error);
       }
-    },
-  ));
+    )
+  );
 
-  passport.use('signup', new Strategy(
-    {
-      usernameField: 'username',
-      passwordField: 'password',
-      passReqToCallback: true,
-    },
-    async (req, username, password, done) => {
-      try {
-        // Get all the signup fields
-        const { email } = req.body;
+  passport.use(
+    'signup',
+    new Strategy(
+      {
+        usernameField: 'username',
+        passwordField: 'password',
+        passReqToCallback: true,
+      },
+      async (req, username, password, done) => {
+        try {
+          // Get all the signup fields
+          const { email } = req.body;
 
-        // Create the AuthUser in Hygraph
-        const { createAuthUser } = await client.request(mutationCreateUser, { username, password, email });
+          // Create the AuthUser in Hygraph
+          const { createAuthUser } = await client.request(mutationCreateUser, {
+            username,
+            password: bcrypt.hashSync(password, 10),
+            email,
+          });
 
-        // Error
-        if (!createAuthUser) {
-          throw new HTTPError(`Can't create the user with username: ${username}`, 404);
+          // Error
+          if (!createAuthUser) {
+            throw new HTTPError(
+              `Can't create the user with username: ${username}`,
+              404
+            );
+          }
+
+          const userPayload = {
+            id: createAuthUser.id,
+            username: createAuthUser.username,
+            email: createAuthUser.email,
+          };
+
+          const token = jwt.sign({ user: userPayload }, settings.JWT_SECRET, {
+            expiresIn: settings.JWT_EXPIRE,
+          });
+
+          const authenticated = {
+            ...userPayload,
+            token,
+          };
+
+          done(null, authenticated);
+        } catch (error) {
+          done(error);
         }
-
-        const userPayload = {
-          id: createAuthUser.id,
-          username: createAuthUser.username,
-          email: createAuthUser.email,
-        };
-
-        const token = jwt.sign({ user: userPayload }, settings.JWT_SECRET, {
-          expiresIn: settings.JWT_EXPIRE,
-        });
-
-        const authenticated = {
-          ...userPayload,
-          token,
-        };
-
-        done(null, authenticated);
-      } catch (error) {
-        done(error);
       }
-    },
-  ));
+    )
+  );
 };
 
 export default localStrategy;
