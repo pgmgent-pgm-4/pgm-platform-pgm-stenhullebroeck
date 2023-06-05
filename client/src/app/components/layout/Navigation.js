@@ -10,7 +10,12 @@ const routes = [
     path: '/projects',
   },
   {
-    title: 'Programme',
+    title: 'Blog',
+    type: 'internal',
+    path: '/blogs',
+  },
+  {
+    title: 'Programma',
     type: 'internal',
     path: '/programma',
   },
@@ -35,6 +40,17 @@ const Navigation = () => {
   return (
     <>
       <Nav className="me-auto" navbar>
+        <button
+          onClick={function darkMode() {
+            const body = document.body;
+            const element = document.body.getElementsByClassName('navbar')[0];
+            body.classList.toggle('dark-mode');
+            element.classList.toggle('bg-dark');
+            element.classList.toggle('navbar-dark');
+          }}
+        >
+          Dark Mode
+        </button>
         {routes &&
           routes.map((route) => (
             <NavItem key={route.path}>

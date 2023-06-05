@@ -21,6 +21,8 @@ import {
   ProfilePage,
   Signin,
   Signup,
+  BlogsPage,
+  CoursePage,
 } from './app/pages';
 import { AuthProvider, HygraphProvider } from './app/context';
 import { AuthLayout, PublicLayout, UserLayout } from './app/components/layout';
@@ -50,6 +52,11 @@ root.render(
                 />
                 <Route path={AppRoutes.PROJECTS} element={<ProjectsPage />} />
                 <Route path={AppRoutes.PROGRAMME} element={<ProgrammePage />} />
+                <Route path={AppRoutes.BLOGS} element={<BlogsPage />} />
+                <Route
+                  path={AppRoutes.PROGRAMME_DETAILS}
+                  element={<CoursePage />}
+                />
               </Route>
               <Route path="auth" element={<AuthLayout />}>
                 <Route

@@ -75,6 +75,80 @@ export const GET_ALL_COURSES = gql`
   }
 `;
 
+export const GET_ALL_PROGRAMME_LINES = gql`
+  query GetAllProgrammeLines {
+    programmeLines {
+      courses(orderBy: period_ASC) {
+        description
+        id
+        name
+        period
+        year
+        studyPoints
+        semester
+        lecturers {
+          id
+          firstName
+          lastName
+          initials
+        }
+      }
+      colorCode
+      name
+      id
+      description
+    }
+  }
+`;
+
+export const GET_AUTH_USER = gql`
+  query GetAuthUser($id: ID!) {
+    authUser(where: { id: $id }) {
+      email
+      username
+      profile {
+        id
+        firstName
+        lastName
+        dayOfBirth
+      }
+    }
+  }
+`;
+
+export const GET_ALL_BLOGS = gql`
+  query GetAllBlogs {
+    blogs(orderBy: updatedAt_DESC) {
+      id
+      description
+      title
+      updatedAt
+      picture {
+        id
+        url
+      }
+      body {
+        html
+      }
+    }
+  }
+`;
+
+export const GET_COURSE_BY_ID = gql`
+  query GetCourseById($id: ID!) {
+    course(where: { id: $id }) {
+      id
+      name
+      description
+      ectsUrl
+      period
+      semester
+      studyPoints
+      year
+    }
+  }
+`;
+
 // export const GET_ALL_COMMUNITIES = gql`
 //   query GetAllCommunities {
 //     communities {

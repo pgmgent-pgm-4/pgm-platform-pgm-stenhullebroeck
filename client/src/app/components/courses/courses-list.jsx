@@ -1,41 +1,48 @@
 // Import external modules
 import { gql, useQuery } from '@apollo/client';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle } from 'reactstrap';
 
 // Import custom modules
-import { GET_ALL_COURSES } from '../../graphql';
-import './courses.css';
+import { GET_ALL_PROGRAMME_LINES } from '../../graphql';
+import './programme.css';
+import { NavLink } from 'react-router-dom';
 
-const CoursesList = () => {
-  const { loading, error, data } = useQuery(GET_ALL_COURSES);
+const ProgrammeList = () => {
+  const { loading, error, data } = useQuery(GET_ALL_PROGRAMME_LINES);
 
   const gqlResultAsJSX = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error.toString()}</p>;
 
-    const myData = [].concat(data);
-
     return (
-      <div className="card courses-list">
-        <div className="card-header">Courses</div>
-        <ListGroup>
+      <div className="card programme-list">
+        <div className="card-header">Programmelijnen</div>
+        <div className="card-body">
           {data &&
-            data.courses &&
-            data.courses.map((course) => (
-              <ListGroupItem
-                key={course.id}
+            data.programmeLines &&
+            data.programmeLines.map((programmeLine) => (
+              <Card
+                key={programmeLine.id}
                 className={
-                  'background-' +
-                  course.programmeLine.colorCode +
-                  ' period-' +
-                  course.period
+                  'programme-card background-' + programmeLine.colorCode
                 }
               >
-                <h2>{course.name}</h2>
-                <p>SP:{course.studyPoints}</p>
-              </ListGroupItem>
+                <CardHeader>{programmeLine.name}</CardHeader>
+                <CardBody className="courses">
+                  {programmeLine.courses.map((course) => (
+                    <NavLink
+                      to={'/programma/' + course.id}
+                      className="course-link"
+                    >
+                      <Card key={course.id} course={course} className="course">
+                        <CardHeader>{course.name}</CardHeader>
+                      </Card>
+                    </NavLink>
+                  ))}
+                </CardBody>
+              </Card>
             ))}
-        </ListGroup>
+        </div>
       </div>
     );
   };
@@ -43,4 +50,4 @@ const CoursesList = () => {
   return <>{gqlResultAsJSX()}</>;
 };
 
-export default CoursesList;
+export default ProgrammeList;

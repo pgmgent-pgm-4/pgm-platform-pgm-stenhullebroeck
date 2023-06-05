@@ -1,13 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
-const PostSummaryComponent = ({post}) => {
+const PostSummaryComponent = ({ post }) => {
   return (
     <div className="post-summary">
       <NavLink to={`/posts/${post.id}`}>
         <h2>{post.title}</h2>
-      </NavLink>      
+      </NavLink>
     </div>
-  )
+  );
 };
 
 export default PostSummaryComponent;

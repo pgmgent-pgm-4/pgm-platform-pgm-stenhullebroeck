@@ -6,7 +6,7 @@ import { useAuth } from './context';
 import './App.scss';
 
 function App() {
-  // const { currentUser, signInWithEmailAndPassword} = useAuth();  
+  // const { currentUser, signInWithEmailAndPassword} = useAuth();
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -21,8 +21,8 @@ function App() {
   // }, [currentUser]);
 
   return (
-    <div className="app">  
-      <Outlet />    
+    <div className="app">
+      <Outlet />
     </div>
   );
 }

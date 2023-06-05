@@ -1,8 +1,5 @@
 // Import external modules
-import {
-  gql,
-  useQuery,
-} from "@apollo/client";
+import { gql, useQuery } from '@apollo/client';
 import { Spinner } from 'reactstrap';
 
 // Import custom components
@@ -13,25 +10,18 @@ const PostsPage = () => {
   const { loading, error, data } = useQuery(GET_ALL_POSTS_SMALL);
 
   const gqlResult = () => {
-    if (loading) return <Spinner
-      color="primary"
-      size=""
-      type="grow"
-    >
-      Loading...
-    </Spinner>;
+    if (loading)
+      return (
+        <Spinner color="primary" size="" type="grow">
+          Loading...
+        </Spinner>
+      );
     if (error) return <p>Error :(</p>;
 
-    return (
-      <PostsListComponent posts={data.posts} />
-    );
+    return <PostsListComponent posts={data.posts} />;
   };
 
-  return (
-    <>
-      {gqlResult()}
-    </>
-  )
+  return <>{gqlResult()}</>;
 };
 
 export default PostsPage;

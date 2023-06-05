@@ -11,7 +11,6 @@ const CommunitiesList = () => {
   const gqlResultAsJSX = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error.toString()}</p>;
-    console.log(data);
 
     return (
       <div className="card communities-list">

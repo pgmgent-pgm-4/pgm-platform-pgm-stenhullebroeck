@@ -83,5 +83,5 @@ mutation CreateProfileMutation($firstname: String!, $lastname: String!) {
   /*
    * Create Models in Auth
    */
-  await createUsers(100);
+  await createUsers(50);
 })();

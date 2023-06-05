@@ -8,6 +8,8 @@ import Signup from './signup.page';
 import ProfilePage from './profile.page';
 import ProjectsPage from './projects.page';
 import ProgrammePage from './programme.page';
+import BlogsPage from './blogs.page';
+import CoursePage from './course-details.page';
 
 export {
   CommunitiesPage,
@@ -20,4 +22,6 @@ export {
   ProfilePage,
   ProjectsPage,
   ProgrammePage,
+  BlogsPage,
+  CoursePage,
 };
