@@ -23,9 +23,11 @@ import {
   Signup,
   BlogsPage,
   CoursePage,
+  TeamsPage,
 } from './app/pages';
 import { AuthProvider, HygraphProvider } from './app/context';
 import { AuthLayout, PublicLayout, UserLayout } from './app/components/layout';
+import { ThemeProvider } from './app/context/theme.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -33,55 +35,60 @@ root.render(
     <BrowserRouter>
       <HygraphProvider>
         <AuthProvider>
-          <Routes>
-            <Route element={<App />}>
-              <Route path={AppRoutes.LANDING} element={<PublicLayout />}>
-                <Route index element={<HomePage />} />
+          <ThemeProvider>
+            <Routes>
+              <Route element={<App />}>
+                <Route path={AppRoutes.LANDING} element={<PublicLayout />}>
+                  <Route index element={<HomePage />} />
+                  <Route
+                    path={AppRoutes.HOME}
+                    element={<Navigate to="/" replace={true} />}
+                  />
+                  <Route
+                    path={AppRoutes.POST_DETAILS}
+                    element={<PostDetailsPage />}
+                  />
+                  <Route
+                    path={AppRoutes.COMMUNITIES}
+                    element={<CommunitiesPage />}
+                  />
+                  <Route path={AppRoutes.PROJECTS} element={<ProjectsPage />} />
+                  <Route
+                    path={AppRoutes.PROGRAMME}
+                    element={<ProgrammePage />}
+                  />
+                  <Route path={AppRoutes.BLOGS} element={<BlogsPage />} />
+                  <Route path={AppRoutes.TEAMS} element={<TeamsPage />} />
+                  <Route
+                    path={AppRoutes.PROGRAMME_DETAILS}
+                    element={<CoursePage />}
+                  />
+                </Route>
+                <Route path="auth" element={<AuthLayout />}>
+                  <Route
+                    index
+                    element={
+                      <Navigate to={AppRoutes.AUTH_SIGN_IN} replace={true} />
+                    }
+                  />
+                  <Route path={AppRoutes.AUTH_SIGN_IN} element={<Signin />} />
+                  <Route path={AppRoutes.AUTH_SIGN_UP} element={<Signup />} />
+                </Route>
+                <Route path="user" element={<UserLayout />}>
+                  <Route index element={<DashboardPage />} />
+                  <Route path="profile" element={<ProfilePage />} />
+                </Route>
                 <Route
-                  path={AppRoutes.HOME}
-                  element={<Navigate to="/" replace={true} />}
-                />
-                <Route path={AppRoutes.POSTS} element={<PostsPage />} />
-                <Route
-                  path={AppRoutes.POST_DETAILS}
-                  element={<PostDetailsPage />}
-                />
-                <Route
-                  path={AppRoutes.COMMUNITIES}
-                  element={<CommunitiesPage />}
-                />
-                <Route path={AppRoutes.PROJECTS} element={<ProjectsPage />} />
-                <Route path={AppRoutes.PROGRAMME} element={<ProgrammePage />} />
-                <Route path={AppRoutes.BLOGS} element={<BlogsPage />} />
-                <Route
-                  path={AppRoutes.PROGRAMME_DETAILS}
-                  element={<CoursePage />}
-                />
-              </Route>
-              <Route path="auth" element={<AuthLayout />}>
-                <Route
-                  index
+                  path="*"
                   element={
-                    <Navigate to={AppRoutes.AUTH_SIGN_IN} replace={true} />
+                    <main style={{ padding: '1rem' }}>
+                      <p>There's nothing here!</p>
+                    </main>
                   }
                 />
-                <Route path={AppRoutes.AUTH_SIGN_IN} element={<Signin />} />
-                <Route path={AppRoutes.AUTH_SIGN_UP} element={<Signup />} />
               </Route>
-              <Route path="user" element={<UserLayout />}>
-                <Route index element={<DashboardPage />} />
-                <Route path="profile" element={<ProfilePage />} />
-              </Route>
-              <Route
-                path="*"
-                element={
-                  <main style={{ padding: '1rem' }}>
-                    <p>There's nothing here!</p>
-                  </main>
-                }
-              />
-            </Route>
-          </Routes>
+            </Routes>
+          </ThemeProvider>
         </AuthProvider>
       </HygraphProvider>
     </BrowserRouter>

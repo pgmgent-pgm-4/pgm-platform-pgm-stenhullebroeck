@@ -2,6 +2,8 @@ import { Fragment } from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { NavbarText, Nav, NavItem, NavLink } from 'reactstrap';
 import { UserContextNavigation } from '../auth';
+import ThemeToggle from '../theme';
+import { useThemeContext } from '../../context/theme.context';
 
 const routes = [
   {
@@ -20,14 +22,14 @@ const routes = [
     path: '/programma',
   },
   {
-    title: 'Communities',
+    title: 'Docenten',
     type: 'internal',
     path: '/communities',
   },
   {
-    title: 'Posts',
+    title: 'Teams',
     type: 'internal',
-    path: '/posts',
+    path: '/teams',
   },
   {
     title: 'Contact',
@@ -37,20 +39,14 @@ const routes = [
 ];
 
 const Navigation = () => {
+  const { isDarkMode, handleThemeChange } = useThemeContext();
   return (
     <>
-      <Nav className="me-auto" navbar>
-        <button
-          onClick={function darkMode() {
-            const body = document.body;
-            const element = document.body.getElementsByClassName('navbar')[0];
-            body.classList.toggle('dark-mode');
-            element.classList.toggle('bg-dark');
-            element.classList.toggle('navbar-dark');
-          }}
-        >
-          Dark Mode
-        </button>
+      <Nav
+        className={`me-auto ${isDarkMode ? 'bg-dark navbar-dark' : ''}`}
+        navbar
+      >
+        <ThemeToggle />
         {routes &&
           routes.map((route) => (
             <NavItem key={route.path}>

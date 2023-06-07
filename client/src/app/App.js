@@ -1,3 +1,6 @@
+import React from 'react';
+import { useThemeContext } from './context/theme.context';
+
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -6,22 +9,10 @@ import { useAuth } from './context';
 import './App.scss';
 
 function App() {
-  // const { currentUser, signInWithEmailAndPassword} = useAuth();
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await signInWithEmailAndPassword('Eileen39', 'w84pgmGent');
-  //   }
-  //   fetchData();
-
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log(currentUser);
-  // }, [currentUser]);
+  const { isDarkMode, handleThemeChange } = useThemeContext();
 
   return (
-    <div className="app">
+    <div className={`app ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <Outlet />
     </div>
   );

@@ -10,6 +10,7 @@ import ProjectsPage from './projects.page';
 import ProgrammePage from './programme.page';
 import BlogsPage from './blogs.page';
 import CoursePage from './course-details.page';
+import TeamsPage from './teams.page';
 
 export {
   CommunitiesPage,
@@ -24,4 +25,5 @@ export {
   ProgrammePage,
   BlogsPage,
   CoursePage,
+  TeamsPage,
 };
