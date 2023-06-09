@@ -39,7 +39,7 @@
   "scripts": {
     "clean": "rm -rf dist && mkdir dist",
     "build": "npm run clean && npm run build:server",
-    "build:server": "cpy package.prod.json dist --rename=package.json && cpy production.env dist && babel -d ./dist ./src -s && cd dist && npm install ",
+    "build:server": "cpy 'package.prod.json' dist --rename=package.json && cpy 'production.env' dist && babel -d ./dist ./src -s && cd dist && npm install ",
     "start:dev": "cross-env NODE_ENV=development HOST=localhost PORT=8080 nodemon --exec babel-node src/app.js --watch src/*",
     "start:build": "cross-env NODE_ENV=production HOST=localhost PORT=8080 node dist/app.js",
     "lint": "cross-env NODE_ENV=lint eslint . --ext .js --fix",
