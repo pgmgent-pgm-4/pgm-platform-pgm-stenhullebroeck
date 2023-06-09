@@ -23,6 +23,8 @@ var _nodeFetch = _interopRequireDefault(require("node-fetch"));
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
+var _bcrypt = _interopRequireDefault(require("bcrypt"));
+
 var _settings = _interopRequireDefault(require("../config/settings"));
 
 var _utils = require("../utils");
@@ -73,7 +75,7 @@ var localStrategy = function localStrategy() {
               throw new _utils.HTTPError('User does no exists', 404);
 
             case 7:
-              if (!(password !== authUser.password)) {
+              if (_bcrypt["default"].compareSync(password, authUser.password)) {
                 _context.next = 9;
                 break;
               }
@@ -135,7 +137,7 @@ var localStrategy = function localStrategy() {
               _context2.next = 4;
               return client.request(mutationCreateUser, {
                 username: username,
-                password: password,
+                password: _bcrypt["default"].hashSync(password, 10),
                 email: email
               });
 

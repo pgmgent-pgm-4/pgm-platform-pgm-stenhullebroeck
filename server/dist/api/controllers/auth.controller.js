@@ -55,60 +55,43 @@ var login = function login(req, res, next) {
   }())(req, res, next);
 };
 
-var signup = /*#__PURE__*/function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res, next) {
-    return _regenerator["default"].wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _passport["default"].authenticate('signup', /*#__PURE__*/function () {
-              var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(err, authenticated, info) {
-                return _regenerator["default"].wrap(function _callee2$(_context2) {
-                  while (1) {
-                    switch (_context2.prev = _context2.next) {
-                      case 0:
-                        _context2.prev = 0;
+var signup = function signup(req, res, next) {
+  _passport["default"].authenticate('signup', /*#__PURE__*/function () {
+    var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(err, authenticated, info) {
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
 
-                        if (!(err || !authenticated)) {
-                          _context2.next = 3;
-                          break;
-                        }
+              if (!(err || !authenticated)) {
+                _context2.next = 3;
+                break;
+              }
 
-                        throw err;
+              throw err;
 
-                      case 3:
-                        return _context2.abrupt("return", res.status(200).json(authenticated));
+            case 3:
+              return _context2.abrupt("return", res.status(200).json(authenticated));
 
-                      case 6:
-                        _context2.prev = 6;
-                        _context2.t0 = _context2["catch"](0);
-                        return _context2.abrupt("return", (0, _utils.handleHTTPError)(_context2.t0, next));
+            case 6:
+              _context2.prev = 6;
+              _context2.t0 = _context2["catch"](0);
+              return _context2.abrupt("return", (0, _utils.handleHTTPError)(_context2.t0, next));
 
-                      case 9:
-                      case "end":
-                        return _context2.stop();
-                    }
-                  }
-                }, _callee2, null, [[0, 6]]);
-              }));
-
-              return function (_x7, _x8, _x9) {
-                return _ref3.apply(this, arguments);
-              };
-            }())(req, res, next);
-
-          case 1:
-          case "end":
-            return _context3.stop();
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
         }
-      }
-    }, _callee3);
-  }));
+      }, _callee2, null, [[0, 6]]);
+    }));
 
-  return function signup(_x4, _x5, _x6) {
-    return _ref2.apply(this, arguments);
-  };
-}();
+    return function (_x4, _x5, _x6) {
+      return _ref2.apply(this, arguments);
+    };
+  }())(req, res, next);
+};
 
 var logout = function logout(req, res, next) {
   try {
