@@ -19,7 +19,13 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "cpy-cli": "^4.1.0"
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.5",
+    "@babel/node": "^7.22.1",
+    "@babel/plugin-transform-runtime": "^7.18.2",
+    "@babel/preset-env": "^7.16.5",
+    "cpy": "^10.1.0",
+    "cpy-cli": "^4.2.0"
   },
   "scripts": {
     "clean": "rm -rf dist && mkdir dist",
