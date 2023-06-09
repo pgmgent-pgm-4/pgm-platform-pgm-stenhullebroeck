@@ -46,7 +46,6 @@ const Navigation = () => {
         className={`me-auto ${isDarkMode ? 'bg-dark navbar-dark' : ''}`}
         navbar
       >
-        <ThemeToggle />
         {routes &&
           routes.map((route) => (
             <NavItem key={route.path}>
@@ -55,8 +54,10 @@ const Navigation = () => {
               </NavLink>
             </NavItem>
           ))}
+          
       </Nav>
       <Nav>
+        <ThemeToggle />
         <UserContextNavigation />
       </Nav>
     </>

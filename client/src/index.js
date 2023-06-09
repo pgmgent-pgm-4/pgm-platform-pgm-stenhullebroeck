@@ -22,6 +22,7 @@ import {
   Signin,
   Signup,
   BlogsPage,
+  BlogPage,
   CoursePage,
   TeamsPage,
 } from './app/pages';
@@ -58,6 +59,7 @@ root.render(
                     element={<ProgrammePage />}
                   />
                   <Route path={AppRoutes.BLOGS} element={<BlogsPage />} />
+                  <Route path={AppRoutes.BLOG_DETAILS} element={<BlogPage />} />
                   <Route path={AppRoutes.TEAMS} element={<TeamsPage />} />
                   <Route
                     path={AppRoutes.PROGRAMME_DETAILS}

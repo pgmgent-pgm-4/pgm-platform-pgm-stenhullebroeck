@@ -149,6 +149,23 @@ export const GET_COURSE_BY_ID = gql`
   }
 `;
 
+export const GET_BLOG_BY_ID = gql`
+  query GetBlogById($id: ID!) {
+    blog(where: { id: $id }) {
+      id
+      title
+      description
+      picture {
+        url
+        id
+      }
+      body {
+        html
+      }
+    }
+  }
+`;
+
 // export const GET_ALL_COMMUNITIES = gql`
 //   query GetAllCommunities {
 //     communities {

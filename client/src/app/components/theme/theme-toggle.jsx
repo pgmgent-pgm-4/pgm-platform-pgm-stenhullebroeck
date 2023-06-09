@@ -8,7 +8,7 @@ const ThemeToggle = () => {
     <button
       onClick={() => handleThemeChange(!isDarkMode)}
       type="button"
-      className="btn btn-primary"
+      className={`btn ${isDarkMode ? 'btn-dark' : 'btn-light'}`}
     >
       {isDarkMode ? 'Dark theme' : 'Light theme'}
     </button>

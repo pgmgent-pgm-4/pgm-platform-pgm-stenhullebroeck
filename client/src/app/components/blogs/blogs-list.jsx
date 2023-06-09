@@ -1,5 +1,6 @@
 // Import external modules
 import { gql, useQuery } from '@apollo/client';
+import { NavLink } from 'react-router-dom';
 
 // Import custom modules
 import { GET_ALL_BLOGS } from '../../graphql';
@@ -18,16 +19,15 @@ const BlogsList = () => {
           {data &&
             data.blogs &&
             data.blogs.map((blog) => (
-              <div className="card dark" key={blog.id}>
-                <div className="card-header">{blog.title}</div>
-                <div className="blog__image">
-                  <img src={blog.picture.url} alt={blog.title} />
+              <NavLink to={'/blog/' + blog.id} className="blog-link">
+                <div className="card dark" key={blog.id}>
+                  <div className="card-header">{blog.title}</div>
+                  <div className="blog__image dark">
+                    <img src={blog.picture.url} alt={blog.title} />
+                  </div>
+                  <div className="card-body">{blog.description}</div>
                 </div>
-                <div className="card-body">
-                  <p>{blog.description}</p>
-                  <div dangerouslySetInnerHTML={{ __html: blog.body.html }} />
-                </div>
-              </div>
+              </NavLink>
             ))}
         </div>
       </>

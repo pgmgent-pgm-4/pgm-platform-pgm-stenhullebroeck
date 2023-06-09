@@ -7,8 +7,15 @@ import { useEffect, useState } from 'react';
 // import { GET_ALL_TEAMS } from '../../graphql';
 
 const GET_TEAM_MEMBER = gql`
-  query GetTeamMember($memberType: MemberType = Student, $first: Int = 50) {
-    teamMembers(first: $first, where: { memberType: $memberType }) {
+  query GetTeamMember(
+    $memberType: MemberType = Student
+    $first: Int = 50
+    $_search: String = ""
+  ) {
+    teamMembers(
+      first: $first
+      where: { memberType: $memberType, _search: $_search }
+    ) {
       id
       firstName
       lastName
@@ -24,17 +31,27 @@ const GET_TEAM_MEMBER = gql`
 
 const TeamsList = () => {
   const [filter, setFilter] = useState('Student');
+  const [search, setSearch] = useState('');
 
-  //   useEffect(() => {
-  //     setFilter();
-  //   });
+  useEffect(() => {
+    console.log('filter', filter);
+  }, [filter]);
+
+  const handleMemberSearch = (ev) => {
+    const text = ev.target.value;
+    setSearch(text);
+  };
+
+  useEffect(() => {
+    console.log('search', search);
+  }, [search]);
 
   const handleFilter = (e) => {
     setFilter(e.target.value);
   };
 
   const { loading, error, data } = useQuery(GET_TEAM_MEMBER, {
-    variables: { memberType: filter },
+    variables: { memberType: filter, _search: search },
   });
 
   const gqlResultAsJSX = () => {
@@ -44,6 +61,15 @@ const TeamsList = () => {
     return (
       <div className="card teams-list dark">
         <div className="card-header">Teams</div>
+        <label htmlFor="memberSearch">Zoek:</label>
+        <input
+          type="text"
+          name="memberSearch"
+          onChange={(event) => {
+            handleMemberSearch(event);
+          }}
+          value={search}
+        />
         <button onClick={handleFilter} value={'Docent'}>
           Docent
         </button>

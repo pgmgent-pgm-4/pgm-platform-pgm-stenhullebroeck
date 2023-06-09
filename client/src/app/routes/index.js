@@ -5,6 +5,7 @@ export const PROGRAMME = '/programma';
 export const PROGRAMME_DETAILS = '/programma/:courseId';
 export const COMMUNITIES = '/communities';
 export const BLOGS = '/blogs';
+export const BLOG_DETAILS = '/blog/:blogId';
 export const TEAMS = '/teams';
 export const POST_DETAILS = '/posts/:postId';
 export const AUTH_SIGN_UP = '/auth/signup';
