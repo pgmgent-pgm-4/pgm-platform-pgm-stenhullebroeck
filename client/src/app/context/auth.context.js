@@ -35,13 +35,15 @@ const AuthProvider = ({ children }) => {
         }),
       });
       const user = await response.json();
-      if (user) {
+      if (user.error) {
+        throw user.error;
+      } else {
         setCurrentUser(user);
       }
       // Navigate to user dashboard page
-      navigate(AppRoutes.USER);
+      navigate(AppRoutes.HOME);
     } catch (error) {
-      console.log(error);
+      window.alert('Invalid username or password');
     }
   };
 

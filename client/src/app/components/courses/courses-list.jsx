@@ -15,8 +15,8 @@ const ProgrammeList = () => {
     if (error) return <p>{error.toString()}</p>;
 
     return (
-      <div className="card programme-list">
-        <div className="card-header">Programmelijnen</div>
+      <div className=" programme-list">
+        <div className="card-header page-title">Programmelijnen</div>
         <div className="card-body">
           {data &&
             data.programmeLines &&

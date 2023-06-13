@@ -34,12 +34,29 @@ export const GET_ALL_LECTURERS = gql`
 
 export const GET_ALL_PROJECTS = gql`
   query GetAllProjects {
-    projects {
+    projects(orderBy: publishedAt_DESC) {
       id
       title
       description
       body {
         text
+      }
+      course {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const GET_PROJECT_BY_ID = gql`
+  query GetProjectById($id: ID!) {
+    project(where: { id: $id }, orderBy: publishedAt_DESC) {
+      id
+      title
+      description
+      body {
+        html
       }
       course {
         id
@@ -161,6 +178,30 @@ export const GET_BLOG_BY_ID = gql`
       }
       body {
         html
+      }
+    }
+  }
+`;
+
+export const GET_TEAM_MEMBERS = gql`
+  query GetTeamMember(
+    $memberType: MemberType = Student
+    $first: Int = 50
+    $_search: String = ""
+  ) {
+    teamMembers(
+      first: $first
+      where: { memberType: $memberType, _search: $_search }
+      orderBy: publishedAt_DESC
+    ) {
+      id
+      firstName
+      lastName
+      memberType
+      jobTitle
+      picture {
+        id
+        url
       }
     }
   }

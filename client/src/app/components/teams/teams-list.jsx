@@ -3,31 +3,11 @@ import { gql, useQuery } from '@apollo/client';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useEffect, useState } from 'react';
 
-// Import custom modules
-// import { GET_ALL_TEAMS } from '../../graphql';
+// import styling
+import './team-members.css';
 
-const GET_TEAM_MEMBER = gql`
-  query GetTeamMember(
-    $memberType: MemberType = Student
-    $first: Int = 50
-    $_search: String = ""
-  ) {
-    teamMembers(
-      first: $first
-      where: { memberType: $memberType, _search: $_search }
-    ) {
-      id
-      firstName
-      lastName
-      memberType
-      jobTitle
-      picture {
-        id
-        url
-      }
-    }
-  }
-`;
+// Import custom modules
+import { GET_TEAM_MEMBERS } from '../../graphql/queries';
 
 const TeamsList = () => {
   const [filter, setFilter] = useState('Student');
@@ -50,7 +30,7 @@ const TeamsList = () => {
     setFilter(e.target.value);
   };
 
-  const { loading, error, data } = useQuery(GET_TEAM_MEMBER, {
+  const { loading, error, data } = useQuery(GET_TEAM_MEMBERS, {
     variables: { memberType: filter, _search: search },
   });
 
@@ -59,41 +39,52 @@ const TeamsList = () => {
     if (error) return <p>{error.toString()}</p>;
 
     return (
-      <div className="card teams-list dark">
-        <div className="card-header">Teams</div>
-        <label htmlFor="memberSearch">Zoek:</label>
-        <input
+      <>
+        <div className="card-header page-title dark">Teams</div>
+        <div className=" teams-list dark">
+          {/* <label htmlFor="memberSearch">Zoek:</label> */}
+          {/* <input
           type="text"
           name="memberSearch"
           onChange={(event) => {
             handleMemberSearch(event);
           }}
           value={search}
-        />
-        <button onClick={handleFilter} value={'Docent'}>
-          Docent
-        </button>
-        <button onClick={handleFilter} value={'Student'}>
-          Student
-        </button>
-        <button onClick={handleFilter} value={'Alumni'}>
-          Alumni
-        </button>
-        <ListGroup>
-          {data &&
-            data.teamMembers &&
-            data.teamMembers.map((teamMember) => (
-              <ListGroupItem key={teamMember.id}>
-                <img src={teamMember.picture.url} alt="pfp" />
-                <h2>
-                  {teamMember.firstName} {teamMember.lastName}
-                </h2>
-                <p>{teamMember.memberType}</p>
-                <p>{teamMember.jobTitle}</p>
-              </ListGroupItem>
-            ))}
-        </ListGroup>
-      </div>
+        /> */}
+          <button onClick={handleFilter} value={'Docent'}>
+            Docenten
+          </button>
+          <button onClick={handleFilter} value={'Student'}>
+            Studenten
+          </button>
+          <button onClick={handleFilter} value={'Alumni'}>
+            Alumni
+          </button>
+          <div className="card-body dark">
+            <h1>
+              {filter === 'Docent' ? 'Docenten' : ''}
+              {filter === 'Student' ? 'Studenten' : ''}
+              {filter === 'Alumni' ? 'Alumni' : ''}
+            </h1>
+          </div>
+          <ListGroup className="members-list list-unstyled ms-2 pt-2">
+            {data &&
+              data.teamMembers &&
+              data.teamMembers.map((teamMember) => (
+                <ListGroupItem
+                  className="member-list-member"
+                  key={teamMember.id}
+                >
+                  <img src={teamMember.picture.url} alt="pfp" />
+                  <h2>
+                    {teamMember.firstName} {teamMember.lastName}
+                  </h2>
+                  <p>{teamMember.jobTitle}</p>
+                </ListGroupItem>
+              ))}
+          </ListGroup>
+        </div>
+      </>
     );
   };
 

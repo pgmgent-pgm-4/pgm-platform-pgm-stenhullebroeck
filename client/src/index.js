@@ -13,6 +13,7 @@ import * as AppRoutes from './app/routes';
 import {
   ProgrammePage,
   ProjectsPage,
+  ProjectPage,
   CommunitiesPage,
   DashboardPage,
   HomePage,
@@ -54,6 +55,10 @@ root.render(
                     element={<CommunitiesPage />}
                   />
                   <Route path={AppRoutes.PROJECTS} element={<ProjectsPage />} />
+                  <Route
+                    path={AppRoutes.PROJECT_DETAILS}
+                    element={<ProjectPage />}
+                  />
                   <Route
                     path={AppRoutes.PROGRAMME}
                     element={<ProgrammePage />}

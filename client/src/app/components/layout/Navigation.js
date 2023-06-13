@@ -7,7 +7,12 @@ import { useThemeContext } from '../../context/theme.context';
 
 const routes = [
   {
-    title: 'Projects',
+    title: 'Programma',
+    type: 'internal',
+    path: '/programma',
+  },
+  {
+    title: 'Portfolio',
     type: 'internal',
     path: '/projects',
   },
@@ -17,24 +22,14 @@ const routes = [
     path: '/blogs',
   },
   {
-    title: 'Programma',
+    title: 'Diensten',
     type: 'internal',
-    path: '/programma',
-  },
-  {
-    title: 'Docenten',
-    type: 'internal',
-    path: '/communities',
+    path: '/services',
   },
   {
     title: 'Teams',
     type: 'internal',
     path: '/teams',
-  },
-  {
-    title: 'Contact',
-    type: 'internal',
-    path: '/contact',
   },
 ];
 
@@ -54,7 +49,6 @@ const Navigation = () => {
               </NavLink>
             </NavItem>
           ))}
-          
       </Nav>
       <Nav>
         <ThemeToggle />
