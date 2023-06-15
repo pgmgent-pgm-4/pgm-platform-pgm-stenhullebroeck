@@ -254,3 +254,13 @@ export const GET_3_BLOGS = gql`
     }
   }
 `;
+
+export const GET_3_SERVICES = gql`
+  query GetAllServices {
+    services(first: 3) {
+      id
+      title
+      description
+    }
+  }
+`;

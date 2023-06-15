@@ -1,10 +1,17 @@
 // Import external modules
 import { gql, useQuery } from '@apollo/client';
+import React, { useState } from 'react';
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 // Import custom modules
 import styles from './home.module.css';
 import { NavLink } from 'react-router-dom';
-import { GET_HERO, GET_3_PROJECTS, GET_3_BLOGS } from '../../graphql';
+import {
+  GET_HERO,
+  GET_3_PROJECTS,
+  GET_3_BLOGS,
+  GET_3_SERVICES,
+} from '../../graphql';
 
 const Home = () => {
   const { loading, error, data } = useQuery(GET_HERO);
@@ -18,10 +25,21 @@ const Home = () => {
     error: errorBlogs,
     data: dataBlogs,
   } = useQuery(GET_3_BLOGS);
+  const {
+    loading: loadingServices,
+    error: errorServices,
+    data: dataServices,
+  } = useQuery(GET_3_SERVICES);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
 
   const gqlResultAsJSX = () => {
-    if (loading || loadingProjects || loadingBlogs) return <p>Loading...</p>;
-    if (error || errorProjects || errorBlogs) return <p>{error.toString()}</p>;
+    if (loading || loadingProjects || loadingBlogs || loadingServices)
+      return <p>Loading...</p>;
+    if (error || errorProjects || errorBlogs || errorServices)
+      return <p>{error.toString()}</p>;
 
     return (
       <div className="home dark">
@@ -86,7 +104,29 @@ const Home = () => {
                 </NavLink>
               ))}
           </div>
-          <div className={styles.services}></div>
+          <div className={`dark ${styles.services}`}>
+            <h2>Services</h2>
+            {dataServices &&
+              dataServices.services &&
+              dataServices.services.map((service) => (
+                <>
+                  <h3
+                    onClick={toggle}
+                    style={{ cursor: 'pointer', margin: '1rem' }}
+                    href={`#${service.id}`}
+                  >
+                    {service.title}
+                  </h3>
+                  <Collapse isOpen={false} id={service.id}>
+                    <Card>
+                      <CardBody className="dark">
+                        {service.description}
+                      </CardBody>
+                    </Card>
+                  </Collapse>
+                </>
+              ))}
+          </div>
         </div>
       </div>
     );
