@@ -17,7 +17,7 @@ const ProgrammeList = () => {
     return (
       <div className=" programme-list">
         <div className="card-header page-title">Programmelijnen</div>
-        <div className="card-body">
+        <div className="card-body body">
           {data &&
             data.programmeLines &&
             data.programmeLines.map((programmeLine) => (

@@ -17,24 +17,26 @@ const ProjectsList = () => {
       <>
         <div className=" projects-list dark">
           <div className="card-header page-title">Portfolio</div>
-          <ListGroup>
-            {data &&
-              data.projects &&
-              data.projects.map((project) => (
-                <NavLink
-                  to={'/project/' + project.id}
-                  className="text-decoration-none text-inherit"
-                >
-                  <ListGroupItem
-                    className="list-unstyled dark"
-                    key={project.id}
+          <div className="body">
+            <ListGroup>
+              {data &&
+                data.projects &&
+                data.projects.map((project) => (
+                  <NavLink
+                    to={'/project/' + project.id}
+                    className="text-decoration-none text-inherit"
                   >
-                    <h2>{project.title}</h2>
-                    <p>{project.description}</p>
-                  </ListGroupItem>
-                </NavLink>
-              ))}
-          </ListGroup>
+                    <ListGroupItem
+                      className="list-unstyled dark"
+                      key={project.id}
+                    >
+                      <h2>{project.title}</h2>
+                      <p>{project.description}</p>
+                    </ListGroupItem>
+                  </NavLink>
+                ))}
+            </ListGroup>
+          </div>
         </div>
       </>
     );

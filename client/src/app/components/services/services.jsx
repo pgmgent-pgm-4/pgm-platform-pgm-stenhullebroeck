@@ -15,15 +15,17 @@ const Services = () => {
     return (
       <>
         <div className="services-box dark">
-          <h1>Services</h1>
-          {data &&
-            data.services &&
-            data.services.map((service) => (
-              <div className={`services-box__item ${styles.service} dark`}>
-                <h2>{service.title}</h2>
-                <p>{service.description}k</p>
-              </div>
-            ))}
+          <h1 className="page-title">Services</h1>
+          <div className="body">
+            {data &&
+              data.services &&
+              data.services.map((service) => (
+                <div className={`services-box__item ${styles.service} dark`}>
+                  <h2>{service.title}</h2>
+                  <p>{service.description}k</p>
+                </div>
+              ))}
+          </div>
         </div>
       </>
     );

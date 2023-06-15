@@ -39,6 +39,12 @@ $headings-font-family: 'Ubuntu', sans-serif;
 @import '../../../node_modules/bootstrap/scss/utilities/api';
 
 // 8. Add additional custom code here
+.body {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+}
+
 .dark-mode .dark {
   background-color: #333;
   color: #fefefe;

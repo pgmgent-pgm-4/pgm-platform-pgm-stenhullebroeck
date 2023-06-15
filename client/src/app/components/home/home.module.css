@@ -1,0 +1,41 @@
+.hero_box {
+  display: flex;
+}
+
+.hero {
+  position: relative;
+  width: 79%;
+  height: 37.625rem;
+  background: url('https://media.graphassets.com/OfgaRggQSUquI0PaczQG')
+    no-repeat center center / cover;
+}
+
+.hero_text {
+  position: absolute;
+  bottom: 0;
+  background-color: hsla(0, 0%, 85%, 80%);
+  padding: 0.875rem 2.5625rem;
+}
+
+.hero_text_info {
+  display: flex;
+}
+
+.map {
+  height: 21.6875rem;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.25rem;
+  margin-left: 75%;
+  cursor: pointer;
+}
+
+.body {
+  width: 58%;
+  margin: auto;
+  margin-top: 3rem;
+}

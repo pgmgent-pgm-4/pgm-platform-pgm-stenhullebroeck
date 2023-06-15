@@ -3,9 +3,9 @@ const Education = () => {
     <>
       <div className="education dark">
         <div className="education__header">
-          <h1>Opleiding</h1>
+          <h1 className="page-title">Opleiding</h1>
         </div>
-        <div className="education__body">
+        <div className="education__body body">
           <div className="education__body__card">
             <div className="education__body__card__header">
               <h2>Arteveldehogeschool</h2>
@@ -39,6 +39,32 @@ const Education = () => {
               </div>
 
               <button className="education-cta">Start je inschrijving</button>
+            </div>
+          </div>
+          <div className="education__body__card">
+            <div className="education__body__card__header">
+              <h2>Iets voor jou?</h2>
+              <ul>
+                <li>
+                  Je combineert jouw passie voor IT met een creatief brein.
+                </li>
+                <li>
+                  Je hebt zojuist jouw secundair afgerond of hebt al enkele
+                  jaren werkervaring op zak.
+                </li>
+                <li>
+                  Je wil flitsende en gebruiksvriendelijke websites en mobiele
+                  apps van zero leren programmeren en bouwen.
+                </li>
+                <li>
+                  Je wil vooral doen. Theorie moet voor jou meteen omgezet
+                  kunnen worden naar de praktijk.
+                </li>
+                <li>
+                  Je hebt nog geen specifieke voorkennis, maar wel enorm veel
+                  goesting.
+                </li>
+              </ul>
             </div>
           </div>
         </div>

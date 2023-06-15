@@ -225,6 +225,54 @@ export const GET_ALL_SERVICES = gql`
   }
 `;
 
+export const GET_HERO = gql`
+  query MyQuery {
+    asset(where: { id: "clixatn531jrl0bten9bagwcz" }) {
+      id
+      url
+      width
+      height
+      mimeType
+      size
+    }
+  }
+`;
+
+export const GET_3_PROJECTS = gql`
+  query GetAllProjects {
+    projects(orderBy: publishedAt_DESC, first: 3) {
+      id
+      title
+      description
+      body {
+        text
+      }
+      course {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const GET_3_BLOGS = gql`
+  query GetAllBlogs {
+    blogs(orderBy: updatedAt_DESC, first: 3) {
+      id
+      description
+      title
+      updatedAt
+      picture {
+        id
+        url
+      }
+      body {
+        html
+      }
+    }
+  }
+`;
+
 // export const GET_ALL_COMMUNITIES = gql`
 //   query GetAllCommunities {
 //     communities {

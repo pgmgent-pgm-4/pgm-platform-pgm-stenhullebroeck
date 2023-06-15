@@ -1,6 +1,6 @@
 const CourseDetails = ({ course }) => {
   return (
-    <div className="card course-details dark">
+    <div className="card course-details dark body">
       <div className="card-header">{course.name}</div>
       <div className="card-body">
         <div className="row">

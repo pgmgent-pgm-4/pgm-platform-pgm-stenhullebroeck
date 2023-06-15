@@ -18,8 +18,6 @@ import {
   CommunitiesPage,
   DashboardPage,
   HomePage,
-  PostDetailsPage,
-  PostsPage,
   ProfilePage,
   Signin,
   Signup,
@@ -51,10 +49,6 @@ root.render(
                   <Route
                     path={AppRoutes.EDUCATION}
                     element={<EducationPage />}
-                  />
-                  <Route
-                    path={AppRoutes.POST_DETAILS}
-                    element={<PostDetailsPage />}
                   />
                   <Route
                     path={AppRoutes.COMMUNITIES}

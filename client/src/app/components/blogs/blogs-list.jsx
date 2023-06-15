@@ -16,7 +16,7 @@ const BlogsList = () => {
     return (
       <>
         <div className="card-header dark page-title">Blogs</div>
-        <div className="card-body dark ">
+        <div className="card-body dark body">
           {data &&
             data.blogs &&
             data.blogs.map((blog) => (

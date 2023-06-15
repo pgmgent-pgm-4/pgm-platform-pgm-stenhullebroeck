@@ -17,6 +17,7 @@ const Profile = () => {
 
     return (
       <>
+        <button onClick={() => window.history.back()}>Back</button>
         <p>{data.authUser.email}</p>
         <p>{data.authUser.username}</p>
         <p>{data.authUser.profile.firstName}</p>

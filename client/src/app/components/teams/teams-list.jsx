@@ -41,7 +41,7 @@ const TeamsList = () => {
     return (
       <>
         <div className="card-header page-title dark">Teams</div>
-        <div className=" teams-list dark">
+        <div className=" teams-list dark body">
           {/* <label htmlFor="memberSearch">Zoek:</label> */}
           {/* <input
           type="text"
