@@ -15,7 +15,6 @@ import {
   ProgrammePage,
   ProjectsPage,
   ProjectPage,
-  CommunitiesPage,
   DashboardPage,
   HomePage,
   ProfilePage,
@@ -49,10 +48,6 @@ root.render(
                   <Route
                     path={AppRoutes.EDUCATION}
                     element={<EducationPage />}
-                  />
-                  <Route
-                    path={AppRoutes.COMMUNITIES}
-                    element={<CommunitiesPage />}
                   />
                   <Route path={AppRoutes.PROJECTS} element={<ProjectsPage />} />
                   <Route

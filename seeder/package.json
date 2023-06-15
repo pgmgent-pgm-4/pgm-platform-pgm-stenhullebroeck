@@ -5,14 +5,10 @@
   "main": "src/users-create.seeder.js",
   "scripts": {
     "seeder:users": "babel-node src/users-create.seeder.js --debug",
-    "seeder:categories": "babel-node src/categories-create.seeder.js --debug",
     "seeder:teammembers": "babel-node src/teammembers-create.seeder.js --debug",
     "seeder:blogs": "babel-node src/blogs-create.seeder.js --debug",
     "seeder:projects": "babel-node src/projects-create.seeder.js --debug",
-    "delete:communities": "babel-node src/collection-delete.seeder.js Community Communities --debug",
-    "delete:posts": "babel-node src/collection-delete.seeder.js Post Posts --debug",
     "delete:profiles": "babel-node src/collection-delete.seeder.js Profile Profiles --debug",
-    "delete:tags": "babel-node src/collection-delete.seeder.js Tag Tags --debug",
     "delete:users": "babel-node src/collection-delete.seeder.js AuthUser AuthUsers --debug",
     "delete:users-full": "npm run delete:users && npm run delete:profiles"
   },

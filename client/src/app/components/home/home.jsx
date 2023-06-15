@@ -86,7 +86,7 @@ const Home = () => {
                 </NavLink>
               ))}
           </div>
-          <div></div>
+          <div className={styles.services}></div>
         </div>
       </div>
     );

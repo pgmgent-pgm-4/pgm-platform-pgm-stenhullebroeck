@@ -1,4 +1,3 @@
-import CommunitiesPage from './communities.page';
 import DashboardPage from './dashboard.page';
 import HomePage from './home.page';
 import { EducationPage } from './education.page';
@@ -16,7 +15,6 @@ import ServicesPage from './services.page';
 
 export {
   EducationPage,
-  CommunitiesPage,
   DashboardPage,
   HomePage,
   Signin,
