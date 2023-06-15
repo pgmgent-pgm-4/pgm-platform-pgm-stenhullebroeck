@@ -1,5 +1,6 @@
 export const LANDING = '/';
 export const HOME = '/home';
+export const EDUCATION = '/education';
 export const PROJECTS = '/projects';
 export const PROJECT_DETAILS = '/project/:projectId';
 export const PROGRAMME = '/programma';

@@ -1,6 +1,7 @@
 import CommunitiesPage from './communities.page';
 import DashboardPage from './dashboard.page';
 import HomePage from './home.page';
+import { EducationPage } from './education.page';
 import PostDetailsPage from './post-details.page';
 import PostsPage from './posts.page';
 import Signin from './signin.page';
@@ -16,6 +17,7 @@ import ProjectPage from './project-details.page';
 import ServicesPage from './services.page';
 
 export {
+  EducationPage,
   CommunitiesPage,
   DashboardPage,
   HomePage,

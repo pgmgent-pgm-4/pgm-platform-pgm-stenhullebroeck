@@ -11,6 +11,7 @@ import * as AppRoutes from './app/routes';
 
 // Utilities
 import {
+  EducationPage,
   ProgrammePage,
   ProjectsPage,
   ProjectPage,
@@ -46,6 +47,10 @@ root.render(
                   <Route
                     path={AppRoutes.HOME}
                     element={<Navigate to="/" replace={true} />}
+                  />
+                  <Route
+                    path={AppRoutes.EDUCATION}
+                    element={<EducationPage />}
                   />
                   <Route
                     path={AppRoutes.POST_DETAILS}

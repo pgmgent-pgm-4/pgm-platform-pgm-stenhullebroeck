@@ -23,6 +23,11 @@ const Footer = () => {
             <Row>
               <a href="https://www.pgm.gent/">Platform</a>
             </Row>
+            <Row>
+              <a href="https://www.linkedin.com/company/graduaat-programmeren/">
+                LinkedIn
+              </a>
+            </Row>
           </Col>
         </Row>
         <hr />

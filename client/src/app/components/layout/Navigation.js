@@ -7,6 +7,11 @@ import { useThemeContext } from '../../context/theme.context';
 
 const routes = [
   {
+    title: 'Opleiding',
+    type: 'internal',
+    path: '/education',
+  },
+  {
     title: 'Programma',
     type: 'internal',
     path: '/programma',
