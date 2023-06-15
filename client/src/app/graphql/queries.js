@@ -51,16 +51,24 @@ export const GET_ALL_PROJECTS = gql`
 
 export const GET_PROJECT_BY_ID = gql`
   query GetProjectById($id: ID!) {
-    project(where: { id: $id }, orderBy: publishedAt_DESC) {
+    project(where: { id: $id }) {
       id
       title
       description
+      picture {
+        url
+        id
+      }
       body {
         html
       }
       course {
         id
         name
+      }
+      authUser {
+        id
+        username
       }
     }
   }
@@ -135,7 +143,7 @@ export const GET_AUTH_USER = gql`
 
 export const GET_ALL_BLOGS = gql`
   query GetAllBlogs {
-    blogs(orderBy: updatedAt_DESC) {
+    blogs(orderBy: updatedAt_DESC, first: 25) {
       id
       description
       title
@@ -203,6 +211,16 @@ export const GET_TEAM_MEMBERS = gql`
         id
         url
       }
+    }
+  }
+`;
+
+export const GET_ALL_SERVICES = gql`
+  query GetAllServices {
+    services {
+      id
+      title
+      description
     }
   }
 `;

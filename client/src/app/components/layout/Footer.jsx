@@ -8,11 +8,21 @@ import { useThemeContext } from '../../context/theme.context';
 const Footer = () => {
   const { isDarkMode, handleThemeChange } = useThemeContext();
   return (
-    <footer className="dark footer">
+    <footer className="dark footer pt-2">
       <Container>
         <Row className="row-grid align-items-center mb-5">
           <Col lg="6">
-            <Row>heheh</Row>
+            <Row>
+              <h4>Links</h4>
+            </Row>
+            <Row>
+              <a href="https://www.arteveldehogeschool.be/nl/opleidingen/graduaat/programmeren#alles">
+                Opleiding
+              </a>
+            </Row>
+            <Row>
+              <a href="https://www.pgm.gent/">Platform</a>
+            </Row>
           </Col>
         </Row>
         <hr />

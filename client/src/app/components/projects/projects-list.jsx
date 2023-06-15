@@ -31,7 +31,6 @@ const ProjectsList = () => {
                   >
                     <h2>{project.title}</h2>
                     <p>{project.description}</p>
-                    <p>{project.body.text}</p>
                   </ListGroupItem>
                 </NavLink>
               ))}

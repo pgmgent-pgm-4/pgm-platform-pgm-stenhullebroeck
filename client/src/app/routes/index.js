@@ -8,6 +8,7 @@ export const COMMUNITIES = '/communities';
 export const BLOGS = '/blogs';
 export const BLOG_DETAILS = '/blog/:blogId';
 export const TEAMS = '/teams';
+export const SERVICES = '/services';
 export const POST_DETAILS = '/posts/:postId';
 export const AUTH_SIGN_UP = '/auth/signup';
 export const AUTH_SIGN_IN = '/auth/signin';

@@ -26,6 +26,7 @@ import {
   BlogPage,
   CoursePage,
   TeamsPage,
+  ServicesPage,
 } from './app/pages';
 import { AuthProvider, HygraphProvider } from './app/context';
 import { AuthLayout, PublicLayout, UserLayout } from './app/components/layout';
@@ -70,6 +71,7 @@ root.render(
                     path={AppRoutes.PROGRAMME_DETAILS}
                     element={<CoursePage />}
                   />
+                  <Route path={AppRoutes.SERVICES} element={<ServicesPage />} />
                 </Route>
                 <Route path="auth" element={<AuthLayout />}>
                   <Route

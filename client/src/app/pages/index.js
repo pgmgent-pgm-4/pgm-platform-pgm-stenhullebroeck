@@ -13,6 +13,7 @@ import CoursePage from './course-details.page';
 import TeamsPage from './teams.page';
 import BlogPage from './blog-details.page';
 import ProjectPage from './project-details.page';
+import ServicesPage from './services.page';
 
 export {
   CommunitiesPage,
@@ -30,4 +31,5 @@ export {
   TeamsPage,
   BlogPage,
   ProjectPage,
+  ServicesPage,
 };

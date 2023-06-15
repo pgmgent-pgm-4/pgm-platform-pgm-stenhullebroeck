@@ -5,11 +5,12 @@ import client from './graphql_client';
 import { generateValueBetweenMinAndMax, generateTimestamps } from './utils';
 import uploadMediumByRemoteUrl from './upload-medium';
 
-const mutationCreateBlog = `
-mutation CreateBlog($id: ID!, $title: String!, $description: String!, $body: RichTextAST!, $id1: ID!) {
-    createBlog(
-      data: {title: $title, body: $body, authUser: {connect: {id: $id1}}, picture: {connect: {id: $id}}, description: $description}
+const mutationCreateProject = `
+mutation CreateProject($title: String!, $body: RichTextAST!, $description: String!, $id: ID!, $id1: ID!, $id2: ID!) {
+    createProject(
+      data: {title: $title, body: $body, description: $description, picture: {connect: {id: $id}}, course: {connect: {id: $id1}}, authUser: {connect: {id: $id2}}}
     ) {
+    id
       body {
         markdown
       }
@@ -24,17 +25,24 @@ mutation CreateBlog($id: ID!, $title: String!, $description: String!, $body: Ric
         url
         size
       }
-      id
     }
   }
 `;
 
 const queryGetAuthUsers = `
 query GetAllAuthUserIds {
-    authUsers {
-      id
+    authUsers(first: 100) {
+        id
     }
-  }
+}
+`;
+
+const queryGetCourses = `
+query GetAllCourseIds {
+    courses(first: 100) {
+        id
+    }
+}
 `;
 
 (async () => {
@@ -42,6 +50,11 @@ query GetAllAuthUserIds {
    * Get all AuthUser ids
    */
   let { authUsers } = await client.request(queryGetAuthUsers);
+
+  /*
+   * Get all Course ids
+   */
+  let { courses } = await client.request(queryGetCourses);
 
   const getRandomBody = (n = 1) => {
     let body = '';
@@ -55,64 +68,69 @@ query GetAllAuthUserIds {
   };
 
   /*
-   * Create a Blog
+   * Create a Project
    */
-  const createBlog = async ({
+  const createProject = async ({
     title,
     description,
     body,
     pictureId,
+    courseId,
     authUserId,
   }) => {
     try {
-      const { createBlog } = await client.request(mutationCreateBlog, {
+      const { createProject } = await client.request(mutationCreateProject, {
         title,
         description,
         body,
         id: pictureId,
-        id1: authUserId,
+        id1: courseId,
+        id2: authUserId,
       });
 
-      if (!createBlog) {
-        throw new Error(`Can't create the blog with title ${title}`);
+      if (!createProject) {
+        throw new Error(`Can't create the project with title ${title}`);
       }
 
-      console.log(`Created blog with title ${createBlog.title}`);
-      return createBlog;
+      console.log(`Created project with title ${createProject.title}`);
+      return createProject;
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
   /*
-   * Create a Blog
+   * Create a Project
    */
-  const createBlogs = async (n) => {
+  const createProjects = async (n = 1) => {
     const promises = [];
 
     for (let i = 0; i < n; i++) {
       const result = await uploadMediumByRemoteUrl(faker.image.avatar());
       const authUserId =
         authUsers[generateValueBetweenMinAndMax(0, authUsers.length - 1)].id;
+      const courseId =
+        courses[generateValueBetweenMinAndMax(0, courses.length - 1)].id;
       const ast = await htmlToSlateAST(
-        getRandomBody(generateValueBetweenMinAndMax(1, 4))
+        getRandomBody(generateValueBetweenMinAndMax(1, 3))
       );
 
       promises.push(
-        await createBlog({
-          title: faker.lorem.sentence(generateValueBetweenMinAndMax(2, 10)),
+        await createProject({
+          title: faker.lorem.sentence(generateValueBetweenMinAndMax(2, 5)),
           description: faker.lorem.paragraph(
-            generateValueBetweenMinAndMax(2, 10)
+            generateValueBetweenMinAndMax(2, 5)
           ),
           body: { children: ast },
           pictureId: result.id,
+          courseId,
           authUserId,
         })
       );
 
-      return await Promise.all(promises);
+      return Promise.all(promises);
     }
   };
 
-  await createBlogs(10);
+  await createProjects(10);
 })();
